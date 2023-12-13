@@ -2,7 +2,7 @@ import pyttsx3
 from PyPDF2 import PdfReader
 
 def read_pdf(file_name: str):
-
+    # initialize reader
     reader = PdfReader(file_name)
     number_of_pages = len(reader.pages)
 
@@ -12,6 +12,7 @@ def read_pdf(file_name: str):
 
     for page in range(number_of_pages):
         text = reader.pages[page].extract_text()
+        # append cleaned text to single string
         clean_text += text.strip().replace('\n', ' ')
 
     new_audio = file_name.replace('.pdf', '.mp3') 
