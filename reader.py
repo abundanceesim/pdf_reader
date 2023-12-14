@@ -16,7 +16,11 @@ def read_pdf(file_name: str):
         clean_text += text.strip().replace('\n', ' ')
 
     new_audio = file_name.replace('.pdf', '.mp3') 
-    speech_engine.save_to_file(clean_text, new_audio)
-    speech_engine.runAndWait()
 
-    speech_engine.stop()
+    try:
+        speech_engine.save_to_file(clean_text, new_audio)
+        speech_engine.runAndWait()
+        speech_engine.stop()
+        
+    except Exception as err:
+        print('Error occured:', str(err))
